@@ -21,9 +21,7 @@ CURVE_DAO_PARAM = {
     "quorum": 15,
 }
 
-EMERGENCY_DAO = {
-    "agent": "0x467947EE34aF926cF1DCac093870f613C96B1E0c",
-}
+EMERGENCY_DAO = {"agent": "0x467947EE34aF926cF1DCac093870f613C96B1E0c"}
 GAUGE_CONTROLLER = "0x2F50D538606Fa9EDD2B11E2446BEb18C9D5846bB"
 VOTING_ESCROW = "0x5f3b5DfEb7B28CDbD7FAba78963EE202a494e2A2"
 veCRV = VOTING_ESCROW
@@ -33,7 +31,7 @@ ADDRESSPROVIDER = "0x5ffe7FB82894076ECB99A30D6A32e969e6e35E98"  # On all chains
 
 
 def get_address(vote_type: DAO | str):
-    """ Get execution address of DAO (e.g. admin role)"""
+    """Get execution address of DAO (e.g. admin role)"""
     return get_dao_parameters(vote_type)["agent"]
 
 

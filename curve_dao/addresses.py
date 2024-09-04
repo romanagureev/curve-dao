@@ -1,5 +1,4 @@
-from enum import StrEnum
-
+from strenum import StrEnum
 
 class DAO(StrEnum):
     OWNERSHIP = "ownership"

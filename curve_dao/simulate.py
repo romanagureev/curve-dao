@@ -1,6 +1,7 @@
 import logging
 
 import boa
+from rich import print
 from rich.logging import RichHandler
 from rich.panel import Panel
 from rich.pretty import Pretty
@@ -26,8 +27,7 @@ def simulate(vote_id: int, dao: str | DAO, etherscan_api_key: str):
 
     # print vote details to console first:
     logger.info("Vote stats before Convex Vote:")
-    vote_stats = Panel(Pretty(voting_contract.getVote(vote_id)))
-    logger.info(vote_stats)
+    print(Panel(Pretty(voting_contract.getVote(vote_id))))
 
     # vote
     logger.info("Simulate Convex 'yes' vote")
@@ -41,8 +41,7 @@ def simulate(vote_id: int, dao: str | DAO, etherscan_api_key: str):
 
     # get vote stats:
     logger.info("Vote stats after 1 week:")
-    vote_stats = Panel(Pretty(voting_contract.getVote(vote_id)))
-    logger.info(vote_stats)
+    print(Panel(Pretty(voting_contract.getVote(vote_id))))
 
     # moment of truth - execute the vote!
     logger.info("Simulate proposal execution")

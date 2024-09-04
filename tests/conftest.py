@@ -7,7 +7,7 @@ import curve_dao
 
 
 def pytest_sessionstart():
-    boa.env.fork(url=os.getenv("RPC_ETHEREUM"))
+    boa.env.fork(url=os.getenv("RPC_ETHEREUM"), block_identifier=20679351)
 
 
 @pytest.fixture(scope="session")

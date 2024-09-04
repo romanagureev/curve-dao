@@ -1,6 +1,6 @@
 [project]
 name = "curve-dao"
-version = "1.0.1"
+version = "1.0.2"
 description = "DAO governance tools for CurveDAO."
 readme = {file = "README.md", content-type = "text/markdown"}
 requires-python = ">=3.10"
@@ -20,7 +20,7 @@ classifiers = [
 
 # Requirements
 dependencies = [
-    "titanoboa < 0.2.0",
+    "curve-boa==0.1.10.0",
     "requests",
     "rich",
     "strenum",

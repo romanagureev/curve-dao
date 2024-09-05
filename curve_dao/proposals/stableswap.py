@@ -1,6 +1,6 @@
 import boa
 
-from curve_dao.utils import get_datestring
+from .utils import get_datestring
 
 
 def update_parameters(

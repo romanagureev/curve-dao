@@ -5,7 +5,6 @@ import boa
 from hexbytes import HexBytes
 from rich.logging import RichHandler
 
-from . import proposals  # noqa: F401
 from .addresses import DAO, get_address, get_dao_parameters  # noqa: F401
 from .ipfs import pin_to_ipfs  # noqa: F401
 from .simulate import simulate  # noqa: F401

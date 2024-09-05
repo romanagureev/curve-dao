@@ -3,7 +3,8 @@ import os
 import boa
 from rich import print
 
-import curve_dao
+from curve_dao import create_vote, get_address, simulate
+from curve_dao.proposals import stableswap
 
 # Load environment variables and fork the Ethereum mainnet
 boa.env.fork(os.getenv("RPC_ETHEREUM"))
@@ -23,7 +24,7 @@ pool = boa.from_etherscan(
 )
 
 # Generate proposal actions and description
-actions, description = curve_dao.proposals.stableswap.update_parameters(
+actions, description = stableswap.update_parameters(
     pool,
     RAMP_TIME_WEEKS,
     NEW_A,
@@ -34,8 +35,8 @@ actions, description = curve_dao.proposals.stableswap.update_parameters(
 
 # Create and submit the proposal
 with boa.env.prank(VOTE_CREATOR_SIM):
-    vote_id = curve_dao.create_vote(
-        curve_dao.get_address("ownership"),
+    vote_id = create_vote(
+        get_address("ownership"),
         actions,
         description,
         os.getenv("ETHERSCAN_API_KEY"),
@@ -44,9 +45,7 @@ with boa.env.prank(VOTE_CREATOR_SIM):
 print(f"Vote ID: {vote_id}")
 
 # Simulate the proposal execution
-curve_dao.simulate(
-    vote_id, curve_dao.get_address("ownership"), os.getenv("ETHERSCAN_API_KEY")
-)
+simulate(vote_id, get_address("ownership"), os.getenv("ETHERSCAN_API_KEY"))
 
 # Time travel to after the ramp period
 boa.env.time_travel(seconds=60 * 60 * 24 * 8)  # 8 days (7 days ramp + 1 day buffer)

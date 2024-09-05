@@ -1,1 +1,3 @@
-from .stableswap import *  # noqa: F403,F401
+from .stableswap import update_parameters
+
+__all__ = ["update_parameters"]

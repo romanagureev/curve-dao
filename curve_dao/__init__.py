@@ -5,6 +5,7 @@ import boa
 from hexbytes import HexBytes
 from rich.logging import RichHandler
 
+from . import proposals  # noqa: F401,E402
 from .addresses import DAO, get_address, get_dao_parameters  # noqa: F401
 from .ipfs import pin_to_ipfs  # noqa: F401
 from .simulate import simulate  # noqa: F401
@@ -47,7 +48,3 @@ def create_vote(
     return voting.newVote(
         HexBytes(evm_script), f"ipfs:{ipfs_hash_of_description}", False, False
     )
-
-
-# import proposals at the end to avoid circular imports
-from . import proposals  # noqa: F401,E402

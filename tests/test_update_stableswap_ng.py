@@ -52,7 +52,7 @@ def actions_and_description(
     new_offpeg_fee_multiplier,
     proposal_time_weeks,
 ):
-    actions, description = curve_dao.proposals.stableswap.update_parameters(
+    actions, description = curve_dao.proposals.update_stableswap(
         pool,
         ramp_time_weeks,
         new_A,

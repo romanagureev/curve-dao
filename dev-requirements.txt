@@ -4,3 +4,4 @@ pytest
 titanoboa
 twine
 build
+pylint

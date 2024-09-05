@@ -4,7 +4,7 @@ import boa
 from rich import print
 
 from curve_dao import create_vote, get_address, simulate
-from curve_dao.proposals import stableswap
+from curve_dao.proposals import update_stableswap
 
 # Load environment variables and fork the Ethereum mainnet
 boa.env.fork(os.getenv("RPC_ETHEREUM"))
@@ -24,7 +24,7 @@ pool = boa.from_etherscan(
 )
 
 # Generate proposal actions and description
-actions, description = stableswap.update_parameters(
+actions, description = update_stableswap(
     pool,
     RAMP_TIME_WEEKS,
     NEW_A,

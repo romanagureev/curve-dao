@@ -10,7 +10,7 @@ def get_datestring(ts):
     return dt.strftime(TIME_FORMAT)
 
 
-def update_parameters(
+def update_stableswap(
     pool,
     ramp_time_weeks,
     new_A,

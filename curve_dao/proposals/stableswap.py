@@ -1,6 +1,13 @@
+import datetime
+
 import boa
 
-from .utils import get_datestring
+TIME_FORMAT = "%Y-%m-%d %H:%M:%S%z"
+
+
+def get_datestring(ts):
+    dt = datetime.datetime.fromtimestamp(ts, tz=datetime.timezone.utc)
+    return dt.strftime(TIME_FORMAT)
 
 
 def update_parameters(
@@ -12,8 +19,8 @@ def update_parameters(
     proposal_time_weeks,
 ):
     SECONDS_PER_WEEK = 7 * 24 * 60 * 60
-    FEE_SCALE = 10**6
-    OFFPEG_FEE_MULTIPLIER_SCALE = 10**10
+    FEE_SCALE = 10**6  # bps to int
+    OFFPEG_FEE_MULTIPLIER_SCALE = 10**10  # bps to int
 
     ramp_time_seconds = int(ramp_time_weeks * SECONDS_PER_WEEK)
     proposal_time_seconds = int(proposal_time_weeks * SECONDS_PER_WEEK)

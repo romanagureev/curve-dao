@@ -27,9 +27,13 @@ def create_vote(
     description: str,
     etherscan_api_key: str,
     pinata_token: str,
+    is_simulation: bool = False,
 ) -> int:
     evm_script = prepare_evm_script(dao, actions, etherscan_api_key)
-    ipfs_hash_of_description = pin_to_ipfs(description, pinata_token)
+    
+    vote_description_data = description
+    if not is_simulation:
+        vote_description_data = f"ipfs:{pin_to_ipfs(description, pinata_token)}"
 
     voting = boa.from_etherscan(
         get_dao_parameters(dao)["voting"],
@@ -45,6 +49,4 @@ def create_vote(
             "EOA created a vote less than 12 hours ago."
         )
 
-    return voting.newVote(
-        HexBytes(evm_script), f"ipfs:{ipfs_hash_of_description}", False, False
-    )
+    return voting.newVote(HexBytes(evm_script), vote_description_data, False, False)

@@ -14,6 +14,9 @@ def test_get_address():
         curve_dao.addresses.DAO.EMERGENCY
     )
 
+    with pytest.raises(ValueError):
+        curve_dao.get_address(curve_dao.addresses.CURVE_DAO_OWNERSHIP)
+
 
 @pytest.mark.parametrize(
     "target",

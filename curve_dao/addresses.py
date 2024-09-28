@@ -44,7 +44,9 @@ def get_dao_parameters(vote_type: DAO | str):
 
     if vote_type.startswith("0x"):
         # {agent address: enum}
-        vote_type = {get_dao_parameters(dao)["agent"]: dao for dao in DAO}[vote_type]
+        vote_type = {get_dao_parameters(dao)["agent"].lower(): dao for dao in DAO}[
+            vote_type.lower()
+        ]
     match DAO(vote_type):
         case DAO.OWNERSHIP:
             return CURVE_DAO_OWNERSHIP
